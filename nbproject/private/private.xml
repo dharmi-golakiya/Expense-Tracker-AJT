@@ -3,27 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ExpenseTracker/web/index.html</file>
             <file>file:/D:/ExpenseTracker/web/AddExpense.jsp</file>
             <file>file:/D:/ExpenseTracker/web/home.jsp</file>
-            <file>file:/D:/ExpenseTracker/src/java/login/AddExpenseServlet.java</file>
-            <file>file:/D:/ExpenseTracker/web/ViewExpense.jsp</file>
-            <file>file:/D:/ExpenseTracker/src/java/login/DeleteExpenseServlet.java</file>
-            <file>file:/D:/ExpenseTracker/src/java/login/LoginServlet.java</file>
-            <file>file:/D:/ExpenseTracker/src/java/login/LogoutServlet.java</file>
-            <file>file:/D:/ExpenseTracker/src/java/login/RegisterServlet.java</file>
-            <file>file:/D:/ExpenseTracker/web/Report.jsp</file>
-            <file>file:/D:/ExpenseTracker/web/navbar.jsp</file>
-            <file>file:/D:/ExpenseTracker/web/logout.jsp</file>
-            <file>file:/D:/ExpenseTracker/web/register.jsp</file>
-            <file>file:/D:/ExpenseTracker/web/sidebar.jsp</file>
             <file>file:/D:/ExpenseTracker/web/budgetsearch.jsp</file>
+            <file>file:/D:/ExpenseTracker/web/META-INF/context.xml</file>
             <file>file:/D:/ExpenseTracker/web/HistoryComparison.jsp</file>
-            <file>file:/D:/ExpenseTracker/web/settings.jsp</file>
-            <file>file:/D:/ExpenseTracker/web/tips.jsp</file>
-            <file>file:/D:/ExpenseTracker/web/profile.jsp</file>
-            <file>file:/D:/ExpenseTracker/web/goals.jsp</file>
             <file>file:/D:/ExpenseTracker/web/emiCalculator.jsp</file>
+            <file>file:/D:/ExpenseTracker/web/index.html</file>
         </group>
     </open-files>
 </project-private>

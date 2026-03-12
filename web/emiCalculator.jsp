@@ -11,6 +11,7 @@ double EMI = 0;
 double totalPayment = 0;
 double totalInterest = 0;
 boolean calculated = false;
+String errorMessage = "";
 
 if(request.getParameter("loan") != null){
 
@@ -18,18 +19,25 @@ if(request.getParameter("loan") != null){
     double annualRate = Double.parseDouble(request.getParameter("rate"));
     double N = Double.parseDouble(request.getParameter("time"));
 
-    double R = annualRate / 1200;   // Monthly Interest Rate
+    if(P < 0 || annualRate < 0 || N <= 0){
+        errorMessage = "Negative values are not allowed.";
+    } 
+    else{
 
-    if(R == 0){
-        EMI = P / N;
-    } else {
-        EMI = (P * R * Math.pow(1+R,N)) / (Math.pow(1+R,N) - 1);
+        double R = annualRate / 1200;   // Monthly Interest Rate
+
+        if(R == 0){
+            EMI = P / N;
+        } 
+        else{
+            EMI = (P * R * Math.pow(1+R,N)) / (Math.pow(1+R,N) - 1);
+        }
+
+        totalPayment = EMI * N;
+        totalInterest = totalPayment - P;
+
+        calculated = true;
     }
-
-    totalPayment = EMI * N;
-    totalInterest = totalPayment - P;
-
-    calculated = true;
 }
 %>
 
@@ -37,16 +45,20 @@ if(request.getParameter("loan") != null){
 <html>
 <head>
 <title>EMI Calculator</title>
+
 <style>
+
 body{
     margin:0;
     font-family:Segoe UI;
     background:#f4f6f9;
 }
+
 .main{
     margin-left:240px;
     padding:20px;
 }
+
 .card{
     background:white;
     padding:25px;
@@ -54,11 +66,13 @@ body{
     box-shadow:0 3px 10px rgba(0,0,0,0.1);
     width:400px;
 }
+
 input{
     width:100%;
     padding:8px;
     margin-bottom:15px;
 }
+
 button{
     padding:8px 15px;
     background:#2E86C1;
@@ -67,19 +81,32 @@ button{
     border-radius:6px;
     cursor:pointer;
 }
+
 .result{
     margin-top:20px;
     background:#eef4fb;
     padding:15px;
     border-radius:8px;
 }
+
+.error{
+    margin-top:15px;
+    background:#ffe6e6;
+    padding:10px;
+    border-radius:6px;
+    color:red;
+}
+
 </style>
+
 </head>
+
 <body>
 
 <jsp:include page="sidebar.jsp"/>
 
 <div class="main">
+
 <h2>🧮 EMI Calculator</h2>
 
 <div class="card">
@@ -87,24 +114,36 @@ button{
 <form method="post">
 
 Loan Amount:
-<input type="number" name="loan" required>
+<input type="number" name="loan" min="0" required>
 
 Interest Rate (% per year):
-<input type="number" step="0.01" name="rate" required>
+<input type="number" step="0.01" name="rate" min="0" required>
 
 Time (Months):
-<input type="number" name="time" required>
+<input type="number" name="time" min="1" required>
 
 <button type="submit">Calculate EMI</button>
 
 </form>
 
+<% if(!errorMessage.equals("")){ %>
+
+<div class="error">
+<%= errorMessage %>
+</div>
+
+<% } %>
+
 <% if(calculated){ %>
 
 <div class="result">
+
 <h3>Monthly EMI: ₹ <%=String.format("%.2f", EMI)%></h3>
+
 <p>Total Payment: ₹ <%=String.format("%.2f", totalPayment)%></p>
+
 <p>Total Interest: ₹ <%=String.format("%.2f", totalInterest)%></p>
+
 </div>
 
 <% } %>
